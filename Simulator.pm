@@ -71,6 +71,14 @@ sub run {
 	);
 	$self->{'mw'}->Label(-image => $i)->pack;
 	$self->{'mw'}->Button(
+		'-text' => 'Play',
+		'-command' => sub {
+			while (1) {
+				$self->_next_step;
+			}
+		},
+	)->pack;
+	$self->{'mw'}->Button(
 		'-text' => 'Next step',
 		'-command' => sub {
 			$self->_next_step;
