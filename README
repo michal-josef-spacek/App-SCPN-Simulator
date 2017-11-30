@@ -1,0 +1,103 @@
+NAME
+    App::SCPN::Simulator - Base class for scpn-simulator script.
+
+SYNOPSIS
+     use App::SCPN::Simulator;
+     my $app = App::SCPN::Simulator->new;
+     $app->run;
+
+METHODS
+    "new()"
+             Constructor.
+
+    "run()"
+             Run method.
+             Returns undef.
+
+ERRORS
+     new():
+             new: Cannot load %s module
+             From Class::Utils::set_params():
+                     Unknown parameter '%s'.
+
+EXAMPLE
+     use strict;
+     use warnings;
+
+     use App::SCPN::Simulator;
+     use File::Temp;
+     use IO::Barf qw(barf);
+
+     # Scenario.
+     my $scenario = <<'END';
+     {
+             "conditions": {
+                     "in_1" : { "title" : "First input" },
+                     "in_2" : { "title" : "Second input" },
+                     "in_3" : { "title" : "Third input" },
+                     "out" : { "title" : "Output" }
+             },
+             "events":{
+                     "run":{
+                             "title": "Run",
+                             "class": "run",
+                             "input_edges":[
+                                     {"condition":"in_1"},
+                                     {"condition":"in_2","count":2},
+                                     {"condition":"in_3","count":2}
+                             ],
+                             "output_edges":[
+                                     {"condition":"out"}
+                             ]
+                     }
+             },
+             "case":{
+                     "in_1":{
+                             "init_config_1":{"value":"bullet"},
+                             "init_config_2":{"value":"bullet"}
+                     },
+                     "in_2":{
+                             "init_config_1":{"value":"bullet"},
+                             "init_config_2":{"value":"bullet"}
+                     },
+                     "in_3":{
+                             "init_config_1":{"value":"bullet"},
+                             "init_config_2":{"value":"bullet"},
+                             "init_config_3":{"value":"bullet"}
+                     },
+                     "out":{
+                             "init_config":{"value":"bullet"}
+                     }
+             }
+     }
+     END
+     my $temp_scenario = File::Temp->new->filename;
+     barf($temp_scenario, $scenario);
+
+     # Arguments.
+     @ARGV = (
+             '-v',
+             $temp_scenario,
+     );
+
+     # Run.
+     App::SCPN::Simulator->new->run;
+
+     # Application is running.
+
+DEPENDENCIES
+    Class::Utils, English, File::Temp, Getopt::Std, Mojo::Exception,
+    SCPN::Engine::Simple, SCPN::Schema::GraphViz, Tk, Tk::PNG.
+
+AUTHOR
+    Michal Josef Špaček <mailto:skim@cpan.org>
+
+    <http://skim.cz>
+
+LICENSE AND COPYRIGHT
+     © 2017 Michal Josef Špaček
+     BSD 2-Clause License
+
+VERSION
+    0.01
+

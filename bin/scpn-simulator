@@ -1,0 +1,90 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use App::SCPN::Simulator;
+
+our $VERSION = 0.01;
+
+# Run.
+App::SCPN::Simulator->new->run;
+
+# Print version.
+sub VERSION_MESSAGE {
+	print $VERSION."\n";
+	exit 0;
+}
+
+__END__
+
+=pod
+
+=encoding utf8
+
+=head1 NAME
+
+scpn-simulator - Script to simulate SCPN.
+
+=head1 SYNOPSIS
+
+ scpn-simulator [-h] [-m macro_module] [-t] [-v] [--version] scenario_config
+
+=head1 ARGUMENTS
+
+=over 8
+
+=item * C<-h>
+
+ Print help.
+
+=item * C<-m macro_module>
+
+ Perl module with event definitions.
+ In this module must exist subroutine provided_actions() which returns hash structure in format:
+ {
+        event_id_1 => sub { ... },
+        event_id_2 => sub { ... },
+ }
+ If this option doesn't exist, script run in simulate mode.
+
+=item * C<-t>
+
+ Print titles.
+
+=item * C<-v>
+
+ Verbose mode.
+
+=item * C<--version>
+
+ Print version of script.
+
+=item * C<scenario_config>
+
+ Scenario configuration file.
+
+=back
+
+=head1 EXAMPLE
+
+ scpn-simulator example.json
+
+ scpn-simulator -m Macros example.json
+
+=head1 AUTHOR
+
+Michal Josef Špaček L<mailto:skim@cpan.org>
+
+L<http://skim.cz>
+
+=head1 LICENSE AND COPYRIGHT
+
+ © 2017 Michal Špaček
+ BSD 2-Clause License
+
+=head1 VERSION
+
+0.01
+
+=cut
