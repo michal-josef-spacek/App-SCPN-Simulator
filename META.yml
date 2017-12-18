@@ -19,6 +19,7 @@ meta-spec:
 name: App-SCPN-Simulator
 no_index:
   directory:
+    - examples
     - inc
     - t
     - xt
