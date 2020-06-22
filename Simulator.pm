@@ -112,12 +112,21 @@ sub _get_actual_image_file {
 sub _next_step {
 	my $self = shift;
 	print "next step\n" if $self->{'_opts'}->{'v'};
-	$self->{'engine'}->run(1);
-	$self->{'graphviz'}->to_png($self->{'engine'}->petri_net, $self->{'image'});
+
+	$self->{'graphviz'}->to_png($self->{'engine'}->petri_net, $self->{'image'}, 1);
 	my $image = $self->{'mw'}->Widget('image');
 	$image->blank;
 	$image->read($self->{'image'});
 	$self->{'mw'}->update;
+
+	$self->{'engine'}->run(1);
+
+	$self->{'graphviz'}->to_png($self->{'engine'}->petri_net, $self->{'image'});
+	$image = $self->{'mw'}->Widget('image');
+	$image->blank;
+	$image->read($self->{'image'});
+	$self->{'mw'}->update;
+
 	return;
 }
 
