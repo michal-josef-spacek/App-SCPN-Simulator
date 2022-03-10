@@ -35,8 +35,8 @@ requires:
   Tk::PNG: 0
   perl: 5.6.2
 resources:
-  bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=App-SCPN-Simulator
-  homepage: https://github.com/tupinek/App-SCPN-Simulator
+  bugtracker: https://github.com/michal-josef-spacek/App-SCPN-Simulator/issues
+  homepage: https://github.com/michal-josef-spacek/App-SCPN-Simulator
   license: http://opensource.org/licenses/bsd-license.php
-  repository: git://github.com/tupinek/App-SCPN-Simulator
+  repository: git://github.com/michal-josef-spacek/App-SCPN-Simulator
 version: '0.01'
