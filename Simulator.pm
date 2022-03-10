@@ -145,6 +145,7 @@ App::SCPN::Simulator - Base class for scpn-simulator script.
 =head1 SYNOPSIS
 
  use App::SCPN::Simulator;
+
  my $app = App::SCPN::Simulator->new;
  $app->run;
 

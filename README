@@ -3,6 +3,7 @@ NAME
 
 SYNOPSIS
      use App::SCPN::Simulator;
+
      my $app = App::SCPN::Simulator->new;
      $app->run;
 
